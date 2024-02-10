@@ -23,7 +23,7 @@ pip install cookiecutter
 ## Usage
 
 ```bash
-cookiecutter https://github.com/madskjeldgaard/cookiejuce
+cookiecutter https://github.com/madskjeldgaard/Cookiejuce
 ```
 
 Then, answer the questionnare and a new project is generated.
