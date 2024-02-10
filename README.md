@@ -11,6 +11,7 @@ Features:
 - Support for the CLAP format
 - vscode/neovim overseer runner tasks included
 - [CPM](https://github.com/cpm-cmake/CPM.cmake) for dependency management
+- Based on the Pamplejuce template, see [the original Pamplejuce readme for info about what it includes](PAMPLEJUCE_README.md)
 
 ## Installation
 
