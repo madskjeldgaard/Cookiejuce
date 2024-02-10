@@ -1,6 +1,6 @@
 # Cookiejuce – A command line tool for generating modern JUCE projects with CMake
 
-Easily generate beautiful JUCE projects and create audio, midi and music software with modern C++.
+Easily generate beautiful JUCE projects and create audio, midi and music software with modern C++ using a simple command line tool interface.
 
 When run, you are asked a series of questions, and a new project is generated based on your answers with everything correctly set up and named for your project.
 
