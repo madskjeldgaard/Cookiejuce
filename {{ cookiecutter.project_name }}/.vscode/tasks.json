@@ -1,0 +1,32 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Configure {{ cookiecutter.project_name }}",
+      "type": "shell",
+      "command": "cmake -S . -B build",
+    },
+    {
+      "label": "Build {{ cookiecutter.project_name }}",
+      "type": "shell",
+      "command": "cmake --build build",
+      "dependsOn": "Configure {{ cookiecutter.project_name }}",
+      "group": {
+        "kind": "build"
+      },
+      "problemMatcher": "$gcc",
+    },
+    {
+      "label": "Run {{ cookiecutter.project_name }} Standalone",
+      "type": "shell",
+      "command": "killall {{ cookiecutter.project_name }}; ./build/{{ cookiecutter.project_name }}_artefacts/Standalone/{{ cookiecutter.project_name }}.app/Contents/MacOS/{{ cookiecutter.project_name }}",
+      "dependsOn": "Build {{ cookiecutter.project_name }}",
+    },
+    {
+      "label": "Validate {{ cookiecutter.project_name }} plugin using pluginval",
+      "type": "shell",
+      "command": "/Applications/pluginval.app/Contents/MacOS/pluginval --validate ./build/{{ cookiecutter.project_name }}_artefacts",
+      "dependsOn": "Build {{ cookiecutter.project_name }}",
+    },
+  ]
+}

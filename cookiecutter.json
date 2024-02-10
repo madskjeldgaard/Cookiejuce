@@ -1,0 +1,16 @@
+{
+"_copy_without_render": [
+    "*github/*",
+    "cmake-include/*",
+    "assets/*",
+    "libs/JUCE/*",
+    "{{ cookiecutter.project_name }}/*modules"
+  ],
+  "project_name": "MyPlugin",
+  "company_name": "MyCompany",
+  "plugin_manufacturer_code": "MyCo",
+  "plugin_code": "MyPl",
+  "bundle_id": "com.mycompany.myplugin",
+  "plugin_description": "A simple audio volume gain plugin",
+  "full_name": "Wendy Carlos"
+}
