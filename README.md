@@ -11,7 +11,7 @@ Features:
 - Projects generated [using cookiecutter](https://cookiecutter.readthedocs.io/en/stable/)
 - CMake based JUCE workflow
 - Supports C++20
-- Support for the CLAP format
+- Support for [the CLAP format](https://u-he.com/community/clap/), as well as the expected VST3, AU, AAX and Standalone formats.
 - vscode/neovim overseer runner tasks included
 - [CPM](https://github.com/cpm-cmake/CPM.cmake) for dependency management
 - Based on the Pamplejuce template, see [the original Pamplejuce readme for info about what it includes](PAMPLEJUCE_README.md):
