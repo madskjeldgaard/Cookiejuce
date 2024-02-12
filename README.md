@@ -8,7 +8,7 @@ When run, you are asked a series of questions, and a new project is generated ba
 
 Features:
 - Uses [JUCE v7](https://github.com/juce-framework/JUCE)
-- Has a nice starting point for your project including optional guis, paramaters, etc. 
+- Has a nice starting point for your project including optional guis, parameters, etc. 
 - Projects generated [using cookiecutter](https://cookiecutter.readthedocs.io/en/stable/)
 - CMake based JUCE workflow
 - Supports C++20
