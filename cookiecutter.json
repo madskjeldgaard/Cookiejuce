@@ -12,7 +12,6 @@
   "plugin_code": "{{ cookiecutter.project_name[:4] | capitalize }}",
   "bundle_id": "com.{{ cookiecutter.company_name | lower | replace(' ', '') }}.{{ cookiecutter.project_name | lower | replace(' ', '') }}",
   "plugin_description": "A simple audio volume gain plugin",
-  "full_name": "Wendy Carlos",
   "type": ["instrument", "audio-effect", "midi-effect"],
   "use_generic_gui": true,
   "needs_midi_input": false,
