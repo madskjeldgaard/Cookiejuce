@@ -12,10 +12,22 @@ PluginProcessor::PluginProcessor()
                      #endif
                        )
 {
+
+{% if cookiecutter.add_default_parameters %}
+  parameters.addParameterListener("param1", this);
+  parameters.addParameterListener("param2", this);
+  parameters.addParameterListener("param3", this);
+{% endif %}
 }
 
 PluginProcessor::~PluginProcessor()
 {
+
+{% if cookiecutter.add_default_parameters %}
+  parameters.removeParameterListener("param1", this);
+  parameters.removeParameterListener("param2", this);
+  parameters.removeParameterListener("param3", this);
+{% endif %}
 }
 
 //==============================================================================
@@ -128,6 +140,13 @@ void PluginProcessor::processBlock (juce::AudioBuffer<float>& buffer,
     auto totalNumInputChannels  = getTotalNumInputChannels();
     auto totalNumOutputChannels = getTotalNumOutputChannels();
 
+{% if cookiecutter.add_default_parameters %}
+    if (parametersNeedUpdating)
+{
+        updateParameters();
+}
+{% endif %}
+
     // In case we have more outputs than inputs, this code clears any output
     // channels that didn't contain input data, (because these aren't
     // guaranteed to be empty - they may contain garbage).
@@ -192,3 +211,37 @@ juce::AudioProcessor* JUCE_CALLTYPE createPluginFilter()
 {
     return new PluginProcessor();
 }
+
+{% if cookiecutter.add_default_parameters %}
+//==============================================================================
+// Define parameters for the plugin
+
+void PluginProcessor::parameterChanged (const juce::String& parameterID, float newValue)
+{
+    // Print out change
+    juce::String message = "Parameter changed: " + parameterID + " = " + juce::String (newValue);
+    juce::Logger::writeToLog (message);
+
+    parametersNeedUpdating = true;
+}
+
+void PluginProcessor::updateParameters()
+{
+    // Get parameters
+    auto defaultParam1 = parameters.getParameter ("param1");
+    auto defaultParam2 = parameters.getParameter ("param2");
+    auto defaultParam3 = parameters.getParameter ("param3");
+
+    // Get values
+    auto defaultVal1 = static_cast<juce::AudioParameterInt*> (defaultParam1)->get();
+    auto defaultVal2 = static_cast<juce::AudioParameterFloat*> (defaultParam2)->get();
+    auto defaultVal3 = static_cast<juce::AudioParameterChoice*> (defaultParam3)->getCurrentChoiceName();
+
+    // Do something with the parameter values
+    juce::ignoreUnused(defaultVal1, defaultVal2, defaultVal3);
+
+    // Reset flag
+    parametersNeedUpdating = false;
+}
+
+{% endif %}

@@ -38,11 +38,6 @@ if __name__ == '__main__':
 
     print('\nYour project was successfully created with submodules!\n')
 
-    post_info = '''
-Check the README in the cookiecutter project and the README in your generated
-project for helpful information such as how to build your project, how to set up
-continuous integration, how to automatically deploy releases to GitHub, and how
-to tweak the project itself.
-'''
+    post_info = ''' <3 Thanks for using Cookiejuce <3 '''
 
     print(post_info)
