@@ -24,6 +24,9 @@ The pamplejuce team has [nice explanation about using cmake and juce together](h
 
 ## Installation
 
+> [!NOTE]
+> You need Python3 to run this tool.
+
 It is required to have `cookiecutter` installed. You can install it with pip:
 
 ```bash
