@@ -159,7 +159,15 @@ bool PluginProcessor::hasEditor() const
 
 juce::AudioProcessorEditor* PluginProcessor::createEditor()
 {
+  {%- if cookiecutter.use_generic_gui -%}
+    // Use generic gui for editor for now
+    // return new PluginEditor (*this);
+    return new juce::GenericAudioProcessorEditor (*this);
+{%- else -%}
     return new PluginEditor (*this);
+{% endif %}
+
+
 }
 
 //==============================================================================

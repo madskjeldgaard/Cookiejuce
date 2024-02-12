@@ -58,34 +58,51 @@ add_subdirectory(modules/melatonin_inspector)
 # See `docs/CMake API.md` in the JUCE repo for all config options
 juce_add_plugin(
   "${PROJECT_NAME}"
+
   # Icons for the standalone app
-  ICON_BIG
-  "${CMAKE_CURRENT_SOURCE_DIR}/packaging/icon.png"
-  # Change me!
-  COMPANY_NAME
-  "${COMPANY_NAME}"
-  BUNDLE_ID
-  "${BUNDLE_ID}"
+  ICON_BIG "${CMAKE_CURRENT_SOURCE_DIR}/packaging/icon.png"
+
+  COMPANY_NAME "${COMPANY_NAME}"
+
+  BUNDLE_ID "${BUNDLE_ID}"
   # On MacOS, plugin is copied to ~/Users/yourname/Library/Audio/Plug-Ins/
-  COPY_PLUGIN_AFTER_BUILD
-  TRUE
+  COPY_PLUGIN_AFTER_BUILD TRUE
   # Change me! A four-character plugin id First character MUST be uppercase for
   # AU formats
-  PLUGIN_MANUFACTURER_CODE
-  {{ cookiecutter.plugin_manufacturer_code | upper }}
+  PLUGIN_MANUFACTURER_CODE {{ cookiecutter.plugin_manufacturer_code | upper }}
   # Change me! A unique four-character plugin id Note: this must have at least
   # one upper-case character
-  PLUGIN_CODE
-  {{ cookiecutter.plugin_code | upper }}  FORMATS
+  PLUGIN_CODE {{ cookiecutter.plugin_code | upper }}
 
-  "${FORMATS}"
+  FORMATS "${FORMATS}"
   # The name of your final executable This is how it's listed in the DAW This
   # can be different from PROJECT_NAME and can have spaces! You might want to
   # use v${MAJOR_VERSION} here once you go to v2...
-  PRODUCT_NAME
-  "${PRODUCT_NAME}"
-  # NEEDS_MIDI_INPUT TRUE NEEDS_MIDI_OUTPUT TRUE IS_MIDI_EFFECT FALSE IS_SYNTH
-  # TRUE
+  PRODUCT_NAME "${PRODUCT_NAME}"
+
+  {% if cookiecutter.needs_midi_input %} # If you need MIDI input, set this to TRUE
+  NEEDS_MIDI_INPUT TRUE
+  {% else %} # If you don't need MIDI input, set this to FALSE
+  NEEDS_MIDI_INPUT FALSE
+{% endif %}
+
+  {% if cookiecutter.needs_midi_output %} # If you need MIDI output, set this to TRUE
+  NEEDS_MIDI_OUTPUT TRUE
+  {% else %} # If you don't need MIDI output, set this to FALSE
+  NEEDS_MIDI_OUTPUT FALSE
+{% endif %}
+
+  {% if cookiecutter.type == "midi-effect" %} # If you are building a MIDI effect, set this to TRUE
+  IS_MIDI_EFFECT TRUE
+  {% else %} # If you are not building a MIDI effect, set this to FALSE
+  IS_MIDI_EFFECT FALSE
+{% endif %}
+
+{% if cookiecutter.type == "instrument" %} IS_SYNTH TRUE
+{% elif cookiecutter.type == "midi-effect" %} #NOTE: VST3 and AUv3 MIDI effects need to be marked as synths
+IS_SYNTH TRUE
+{% else %} IS_SYNTH FALSE
+{% endif %}
 )
 
 if(BUILD_CLAP)
@@ -99,10 +116,12 @@ if(BUILD_CLAP)
     CLAP_ID
     "${BUNDLE_ID}"
     # For a full list of features, see this:
-    # https://github.com/free-audio/clap-juce-extensions.git
-    CLAP_FEATURES
-    "note-effect"
-    "analyzer"
+    # https://github.com/free-audio/clap/blob/main/include/clap/plugin-features.h
+    {% if cookiecutter.type == "instrument" %} CLAP_FEATURES "instrument"
+    {% elif cookiecutter.type == "audio-effect" %} CLAP_FEATURES "audio-effect"
+    {% elif cookiecutter.type == "midi-effect" %} CLAP_FEATURES "note-effect"
+    {% else %} CLAP_FEATURES
+    {% endif %}
   )
 endif()
 
