@@ -28,7 +28,7 @@ The pamplejuce team has [nice explanation about using cmake and juce together](h
 ## Installation
 
 > [!NOTE]
-> You need Python3 to run this tool.
+> You need Python3 to run this tool. To make sure your cookiecutter runs with Python 3, run `cookiecutter --version` and inspect the output.
 
 It is required to have `cookiecutter` installed. You can install it with pip:
 
@@ -43,7 +43,10 @@ Run the following command to generate a new project:
 cookiecutter https://github.com/madskjeldgaard/Cookiejuce
 ```
 
-You will be asked a series of questions about your project:
+You will be asked a series of questions about your project. The answers are used to set the right variables in CMake and add the right code to your plugin's C++ files to make it as fast and easy as possible to get started. 
+
+The questions are:
+
 - Project name
 - Company name
 - Plugin manufacturer code – this is auto generated from previous answers but you can overwrite it
@@ -52,14 +55,15 @@ You will be asked a series of questions about your project:
 - Plugin description
 - Type – Choose between instrument, audio effect and midi effect. This will set both the CLAP part of your project with the correct features and the "normal" JUCE part of your project as well.
 - Use generic GUI: Setting this to true will use the generic JUCE GUI instead of your custom GUI. This will automatically show all defined parameters of your plugin as sliders, labels, drop downs etc.
-- Add defualt parameters: This sets up the proper methods, class inheritance and member variables for your plugin to have a set of default parameters to work from. 
+- Add default parameters: This sets up the proper methods, class inheritance and member variables for your plugin to have a set of default parameters to work from. 
 - Needs midi input
 - Needs midi output
 
 After answering these questions, Cookiejuce will git clone all submodules needed for your project and automatically populate your CMakelists.txt, set up all files correctly, make .vscode runner scripts, etc. All with the correct names and settings for your project.
+
 In other words: You can immediately build and use your plugin. 
 
 ## Credits
 
-This project was originally based on [Pamplejuce](https://github.com/sudara/pamplejuce), a super nice template for creating nice JUCE projects.
+This project was originally based on [Pamplejuce](https://github.com/sudara/pamplejuce), a super nice template for creating nice JUCE projects. Cookiejuce is a hard fork with a lot of opinionated stuff added/changed, but please also consider using Pamplejuce.
 
