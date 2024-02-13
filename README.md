@@ -1,3 +1,5 @@
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/X8X6RXV10)
+
 # Cookiejuce – A command line tool for generating modern JUCE projects with CMake
 
 ![cookiejuce in action](cookiejuce.png) 
