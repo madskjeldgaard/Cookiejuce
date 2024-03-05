@@ -195,7 +195,7 @@ target_link_libraries(
 
 if (USE_RUST) # If you are using Rust, link to the Rust target
   # See the Rust.cmake file for more info on how to include a rust library
-  target_link_libraries(SharedCode INTERFACE {{ cookiecutter.project_name | lower | replace(' ', '') }}rustlib)
+  target_link_libraries(SharedCode INTERFACE {{ cookiecutter.__rust_lib_name }})
 endif()
 
 # Link the JUCE plugin targets our SharedCode target

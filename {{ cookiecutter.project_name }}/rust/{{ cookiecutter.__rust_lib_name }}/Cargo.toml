@@ -1,5 +1,5 @@
 [package]
-name = "{{ cookiecutter.project_name | lower | replace(' ', '') }}rustlib-crate"
+name = "{{ cookiecutter.__rust_crate_name }}"
 version = "0.1.0"
 edition = "2021"
 

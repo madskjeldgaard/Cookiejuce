@@ -20,7 +20,7 @@ PluginProcessor::PluginProcessor()
 {% endif %}
 
 #if USING_RUST
-  auto result_from_rust = {{cookiecutter.project_name | lower | replace(' ', '')}}rustlib::my_rust_function(3, 9);
+  auto result_from_rust = {{ cookiecutter.__rust_lib_name }}::my_rust_function(3, 9);
   juce::Logger::writeToLog("Rust result: " + juce::String(result_from_rust));
 #endif
 

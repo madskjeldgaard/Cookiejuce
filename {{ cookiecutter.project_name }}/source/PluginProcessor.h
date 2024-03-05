@@ -7,7 +7,7 @@
 #endif
 
 #if USING_RUST
-#include "{{cookiecutter.project_name | lower | replace(' ', '')}}rustlib/lib.h"
+#include "{{ cookiecutter.__rust_lib_name }}/lib.h"
 #endif
 
 class PluginProcessor : public juce::AudioProcessor

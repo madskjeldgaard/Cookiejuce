@@ -3,7 +3,7 @@ pub extern fn my_rust_function(left: usize, right: usize) -> usize {
     left + right
 }
 
-#[cxx::bridge(namespace = "{{cookiecutter.project_name | lower | replace(' ', '')}}rustlib")]
+#[cxx::bridge(namespace = "{{ cookiecutter.__rust_lib_name }}")]
 mod ffi {
     // This lists types and functions defined on the Rust side that should be exposed to C++
     extern "Rust" {

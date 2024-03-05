@@ -17,23 +17,23 @@ if(USE_RUST)
   # Add a rust library After this, all you need to do is link to the rust
   # library in your C++ like this: target_link_libraries(SharedCode INTERFACE
   # myrustlib)
-  corrosion_import_crate(MANIFEST_PATH "${RUST_DIR}/{{ cookiecutter.project_name | lower | replace(' ', '') }}rustlib/Cargo.toml")
+  corrosion_import_crate(MANIFEST_PATH "${RUST_DIR}/{{ cookiecutter.__rust_lib_name }}/Cargo.toml")
 
   corrosion_add_cxxbridge(
-    {{ cookiecutter.project_name | lower | replace(' ', '') }}rustlib
+    {{ cookiecutter.__rust_lib_name }}
     CRATE
-    {{ cookiecutter.project_name | lower | replace(' ', '') }}rustlib-crate
+    {{ cookiecutter.__rust_crate_name }}
     MANIFEST_PATH
-    "${RUST_DIR}/{{ cookiecutter.project_name | lower | replace(' ', '') }}rustlib"
+    "${RUST_DIR}/{{ cookiecutter.__rust_lib_name }}"
     # NOTE: These file paths are relative to the root of the rust crate's src
-    # dir eg rust/{{ cookiecutter.project_name | lower | replace(' ', '') }}rustlib/src.
+    # dir eg rust/{{ cookiecutter.__rust_lib_name }}/src.
     FILES
     "lib.rs")
 
   if(MSVC)
     # Note: This is required because we use `cxx` which uses `cc` to compile and
     # link C++ code.
-    corrosion_set_env_vars({{ cookiecutter.project_name | lower | replace(' ', '') }}rustlib-crate "CFLAGS=-MDd" "CXXFLAGS=-MDd")
+    corrosion_set_env_vars({{ cookiecutter.__rust_crate_name }} "CFLAGS=-MDd" "CXXFLAGS=-MDd")
   endif()
 
 endif()

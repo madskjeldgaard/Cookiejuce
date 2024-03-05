@@ -16,5 +16,8 @@
   "use_generic_gui": true,
   "add_default_parameters": true,
   "needs_midi_input": false,
-  "needs_midi_output": false
+  "needs_midi_output": false,
+  "__project_slug": "{{ cookiecutter.project_name | lower | replace(' ', '') | replace('-', '') }}",
+  "__rust_lib_name": "{{ cookiecutter.__project_slug }}rustlib",
+  "__rust_crate_name": "{{ cookiecutter.__rust_lib_name }}-crate"
 }
