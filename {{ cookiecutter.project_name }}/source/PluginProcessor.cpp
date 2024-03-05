@@ -18,6 +18,12 @@ PluginProcessor::PluginProcessor()
   parameters.addParameterListener("param2", this);
   parameters.addParameterListener("param3", this);
 {% endif %}
+
+#if USING_RUST
+  auto result_from_rust = {{cookiecutter.project_name | lower | replace(' ', '')}}rustlib::my_rust_function(3, 9);
+  juce::Logger::writeToLog("Rust result: " + juce::String(result_from_rust));
+#endif
+
 }
 
 PluginProcessor::~PluginProcessor()

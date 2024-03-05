@@ -169,6 +169,8 @@ target_compile_definitions(
 # Dependencies installed via CPM, see https://github.com/cpm-cmake/CPM.cmake for
 # more info
 include(cmake-include/CPM.cmake)
+include(cmake-include/Rust.cmake)
+
 # CPMAddPackage("gh:fmtlib/fmt#7.1.3") target_link_libraries(SharedCode
 # INTERFACE fmt::fmt)
 
@@ -190,6 +192,11 @@ target_link_libraries(
             juce::juce_recommended_config_flags
             juce::juce_recommended_lto_flags
             juce::juce_recommended_warning_flags)
+
+if (USE_RUST) # If you are using Rust, link to the Rust target
+  # See the Rust.cmake file for more info on how to include a rust library
+  target_link_libraries(SharedCode INTERFACE {{ cookiecutter.project_name | lower | replace(' ', '') }}rustlib)
+endif()
 
 # Link the JUCE plugin targets our SharedCode target
 target_link_libraries("${PROJECT_NAME}" PRIVATE SharedCode)

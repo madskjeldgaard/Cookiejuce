@@ -30,3 +30,6 @@ cmake-build-relwithdebinfo
 packaging/Output/*
 .cache
 build
+
+# Rust
+rust/{{cookiecutter.project_name | lower | replace(' ', '')}}rustlib/target

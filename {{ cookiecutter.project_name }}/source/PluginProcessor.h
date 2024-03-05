@@ -6,6 +6,10 @@
 #include "ipps.h"
 #endif
 
+#if USING_RUST
+#include "{{cookiecutter.project_name | lower | replace(' ', '')}}rustlib/lib.h"
+#endif
+
 class PluginProcessor : public juce::AudioProcessor
 {% if cookiecutter.add_default_parameters %}
   , public juce::AudioProcessorValueTreeState::Listener

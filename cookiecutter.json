@@ -1,7 +1,7 @@
 {
 "_copy_without_render": [
     "*github/*",
-    "cmake-include/*",
+    "cmake-include/CPM.cmake",
     "assets/*",
     "libs/JUCE/*",
     "{{ cookiecutter.project_name }}/*modules"
