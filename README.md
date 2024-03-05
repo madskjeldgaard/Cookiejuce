@@ -22,6 +22,7 @@ Features:
     - Has Catch2 v3.4.0 for the test framework and runner.
     - Includes a Tests target and a Benchmarks target some examples to get started quickly.
     - Has [Melatonin Inspector](https://github.com/sudara/melatonin_inspector) installed as a JUCE module to help relieve headaches when building plugin UI.
+- Rust – Cookiejuce generates and includes a rust library with auto-generated C++-bindings for your project. Turn on/off in CMake. (uses [corrosion-rs](https://corrosion-rs.github.io/corrosion/) and [cxx](https://cxx.rs/))
 
 The pamplejuce team has [nice explanation about using cmake and juce together](https://melatonin.dev/blog/how-to-use-cmake-with-juce/).
 
